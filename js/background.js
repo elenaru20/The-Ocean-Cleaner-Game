@@ -1,7 +1,7 @@
 class Background {
+
     draw() {
        // console.log("This is the background")
-        
         //fixed background sun and horizon
         image(game.backgroundImageFixed1, 0, 0, width, height);
         //fixed ship as a background

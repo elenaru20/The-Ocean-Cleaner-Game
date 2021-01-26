@@ -1,4 +1,6 @@
 const game = new Game();
+const canvasX = 2000;
+const canvasY = 1450;
 
 function preload() {   
     game.preload();
@@ -6,7 +8,8 @@ function preload() {
 
 function setup() {
     //setting up the total screen size
-    createCanvas(2000, 1450);
+    let canvas = createCanvas(canvasX , canvasY);   
+    canvas.parent("game")
     game.setup();
 }
 

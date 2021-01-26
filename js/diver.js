@@ -1,5 +1,9 @@
 class Diver {
     constructor() {
+        //score of collected rubbish pieces
+        this.rubbishScore = 0;
+        //number of dead dwellers
+        this.deadDwellers = 0;
         //gravity of the diver
         this.gravity = 0.0035;
         //velocity of the diver up/down
