@@ -27,8 +27,11 @@ class Rubbish {
             return false;
         } else {
             game.diver.rubbishScore += 1;
+            
             console.log(game.diver.rubbishScore);
+
             document.querySelector('.rubbishScore').innerText = game.diver.rubbishScore;
+
             console.log(document.querySelector('.rubbishScore').innerText);
 
             document.querySelector('.percentage').innerText = game.calcProportion(game.diver.rubbishScore, game.diver.deadDwellers)

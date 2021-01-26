@@ -8,7 +8,7 @@ class Game {
 
     iteration: next level
     */
-    //shoot harpoone
+    //shoot harpoone, button to count down munition and recharge munition when empty.
     // sound(s) & button an/aus
     //end-screen-HTML
     //start-screen html
@@ -25,13 +25,15 @@ class Game {
 
         this.rubbishImage;
         this.oceanDwellerImage;
+        this.arrowImage;
     }
 
     setup() {
         this.diver = new Diver();
         this.background = new Background();  
         this.rubbishPieces = [];
-        this.oceanDwellers = [];       
+        this.oceanDwellers = [];  
+        this.arrows = []; 
     }
 
     preload() {
@@ -50,8 +52,10 @@ class Game {
         this.diverImage = loadImage('/assets/player/Taucher_freigestellt.png');
 
         this.rubbishImage = loadImage('/assets/rubbish/plastic-bottles.png');
-        
+
         this.oceanDwellerImage = loadImage('/assets/oceanDwellers/fish-1331813_960_720.webp');
+
+        this.arrowImage = loadImage('/assets/player/arrow.png');
 
     }
 
@@ -70,8 +74,19 @@ class Game {
         }
         if (isFinite(num) && !isNaN(num)) {
             return num;
-        }
-        
+        }    
+    }
+
+    shoot() {
+        console.log('shoot')
+        this.arrows.push(new Arrow(this.arrowImage, this.diver)); 
+        this.diver.munition++;
+        console.log(this.diver.munition); 
+        return true;
+    }
+
+    filterShots() {
+
     }
 
     draw() {
@@ -96,6 +111,11 @@ class Game {
             dweller.draw();
         })
 
+        this.arrows.forEach(function (arrow) {
+            arrow.draw();
+        })
+
+
         this.rubbishPieces = this.rubbishPieces.filter((piece) => {
             if (piece.collect(this.diver) || piece.x < 0) {
                 return false;
@@ -111,5 +131,7 @@ class Game {
                 return true;
             }
         })
+
+
     }
 }

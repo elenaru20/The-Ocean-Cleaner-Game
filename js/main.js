@@ -19,20 +19,29 @@ function draw() {
 }
 
 function keyPressed() {
+    //arrow up
     if (keyCode === 38) {
         game.diver.diveUp();
     }
 
+    //arrow down
     if (keyCode === 40) {
         game.diver.diveDown();
     }
 
+    //arrow right
     if (keyCode === 39) {
         game.diver.diveForward();
     }
 
+    // arrow left
     if (keyCode === 37) {
         game.diver.diveBack();
+    }
+
+    //space to shoot
+    if (keyCode === 32) {
+        game.shoot();
     }
 
 }

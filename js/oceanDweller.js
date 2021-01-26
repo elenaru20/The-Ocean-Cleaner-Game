@@ -14,7 +14,7 @@ class OceanDweller {
 
     catch(diverPosition) {
 
-        //get middle of the rubbish piece
+        //get middle of the dweller
         let dwellerX = this.x + this.width/2;
         let dwellerY = this.y + this.height/2;
 
@@ -27,13 +27,15 @@ class OceanDweller {
             return false;
         } else {
             game.diver.deadDwellers -= 1;
+
             console.log(game.diver.deadDwellers);
+
             document.querySelector('.deadDwellers').innerText = game.diver.deadDwellers;
+
             console.log(document.querySelector('.deadDwellers').innerText);
 
             document.querySelector('.percentage').innerText = game.calcProportion(game.diver.rubbishScore, game.diver.deadDwellers)
             
-
             return true;
         }
     }
