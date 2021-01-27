@@ -9,7 +9,7 @@ body {
     font-size: 16px;
     width: 100vw;
     height: 100vh;
-    background-color:#d1c5c5;
+    background-color:#2860a9;
     color: #3e4047;
     margin-top: 5rem;
     margin-left: 5rem;
@@ -40,6 +40,7 @@ body {
 
 .gameDescription {
     margin-left: 4rem;
+    color: #c2b4b4;
 }
 
 .gameDescription p {
