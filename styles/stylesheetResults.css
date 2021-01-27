@@ -16,7 +16,31 @@ body {
     align-items: flex-start;
 }
 
-.clickStart {
+.square {
+    background-color: #2f9ba6;
+    width: 150rem;
+    height: 150rem;
+}
+
+.box {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+h1 {
+    font-size: 10rem;
+}
+
+h2 {
+    font-size: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.clickStartAgain {
     font-size: 10rem;
     text-decoration: none;
     color: #30a0a5;
@@ -26,3 +50,4 @@ body {
 	justify-content: center;
     align-items: center;
 }
+

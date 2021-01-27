@@ -95,6 +95,7 @@ class Game {
                         this.arrows.splice(this.arrows.indexOf(arrow),1);
                         
                         this.diver.deadDwellers -= 1;
+                        this.gameLogic();
                         document.querySelector('.deadDwellers').innerText = this.diver.deadDwellers;
                         console.log(document.querySelector('.deadDwellers').innerText);           
                         document.querySelector('.percentage').innerText = this.calcProportion(this.diver.rubbishScore, this.diver.deadDwellers)
@@ -115,6 +116,20 @@ class Game {
                         document.querySelector('.percentage').innerText = this.calcProportion(this.diver.rubbishScore, this.diver.deadDwellers)
                     }
             }
+        }
+    }
+
+    gameLogic() {
+        let proportion = document.querySelector('.percentage').innerText;
+        let rubbishScore = document.querySelector('.rubbishScore').innerText;
+        if (this.diver.deadDwellers <= 5 && proportion <= 0.5) {
+            console.log('deadfish works');
+            localStorage.setItem('deadDwellers', this.diver.deadDwellers);
+            localStorage.setItem('proportion', proportion);
+            localStorage.setItem('rubbishPieces', rubbishScore);
+            window.location.href = "/result.html"
+        } else {
+            console.log('function connected');
         }
     }
     

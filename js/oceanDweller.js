@@ -27,6 +27,7 @@ class OceanDweller {
             return false;
         } else {
             game.diver.deadDwellers -= 1;
+            game.gameLogic();
 
             console.log(game.diver.deadDwellers);
 
