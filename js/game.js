@@ -26,6 +26,7 @@ class Game {
         this.rubbishImage;
         this.oceanDwellerImage;
         this.arrowImage;
+        this.diverImage;
     }
 
     setup() {
@@ -78,16 +79,45 @@ class Game {
     }
 
     shoot() {
-        console.log('shoot')
+        //console.log('shoot')
         this.arrows.push(new Arrow(this.arrowImage, this.diver)); 
         this.diver.munition++;
-        console.log(this.diver.munition); 
-        return true;
+        console.log('shot', this.diver.munition); 
     }
 
     filterShots() {
 
+        for (let dweller of this.oceanDwellers) {
+            for (let arrow of this.arrows) {
+                if(dist(dweller.x + dweller.width/2, dweller.y + dweller.width/2, 
+                    arrow.x + arrow.width/2, arrow.y + arrow.width/2) <= 60) {
+                        this.oceanDwellers.splice(this.oceanDwellers.indexOf(dweller),1);
+                        this.arrows.splice(this.arrows.indexOf(arrow),1);
+                        
+                        this.diver.deadDwellers -= 1;
+                        document.querySelector('.deadDwellers').innerText = this.diver.deadDwellers;
+                        console.log(document.querySelector('.deadDwellers').innerText);           
+                        document.querySelector('.percentage').innerText = this.calcProportion(this.diver.rubbishScore, this.diver.deadDwellers)
+                    }
+            }
+        }
+
+        for (let rubbish of this.rubbishPieces) {
+            for (let arrow of this.arrows) {
+                if(dist(rubbish.x + rubbish.width/2, rubbish.y + rubbish.width/2, 
+                    arrow.x + arrow.width/2, arrow.y + arrow.width/2) <= 60) {
+                        this.rubbishPieces.splice(this.rubbishPieces.indexOf(rubbish),1);
+                        this.arrows.splice(this.arrows.indexOf(arrow),1);
+
+                        this.diver.rubbishScore += 1;
+                        document.querySelector('.rubbishScore').innerText = this.diver.rubbishScore;
+                        console.log(document.querySelector('.rubbishScore').innerText);
+                        document.querySelector('.percentage').innerText = this.calcProportion(this.diver.rubbishScore, this.diver.deadDwellers)
+                    }
+            }
+        }
     }
+    
 
     draw() {
         //console.log("testdraw")
@@ -126,11 +156,16 @@ class Game {
 
         this.oceanDwellers = this.oceanDwellers.filter((dweller) => {
             if (dweller.catch(this.diver) || dweller.x < 0) {
+                console.log('index dweller', this.oceanDwellers.indexOf(dweller))
                 return false;
             } else {
                 return true;
             }
         })
+
+        this.filterShots();
+
+        
 
 
     }
