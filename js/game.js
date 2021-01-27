@@ -39,24 +39,24 @@ class Game {
 
     preload() {
 
-        this.backgroundImageFixed1 = loadImage('/assets/background/Hintergrund_oben_freigestellt.png');
-        this.backgroundImageFixed2 = loadImage('/assets/background/ship-boat-cartoon.png');
-        this.backgroundImageFixed3 = loadImage('/assets/background/Hintergrund_unten_freigestellt.png');
+        this.backgroundImageFixed1 = loadImage('./assets/background/Hintergrund_oben_freigestellt.png');
+        this.backgroundImageFixed2 = loadImage('./assets/background/ship-boat-cartoon.png');
+        this.backgroundImageFixed3 = loadImage('./assets/background/Hintergrund_unten_freigestellt.png');
 
         this.backgroundMovingImages = [
-            {src: loadImage('/assets/background/Hintergrund_unten_freigestellt.png'), x: 0, speed: 1},
-            {src: loadImage('/assets/background/Hintergrund_unten_freigestellt.png'), x: 0, speed: 1.5},
-            {src: loadImage('/assets/background/Hintergrund_unten_freigestellt.png'), x: 0, speed: 2.5},
-            {src: loadImage('/assets/background/Hintergrund_Untergrund_freigestellt.png'), x: 0, speed: 2.5}
+            {src: loadImage('./assets/background/Hintergrund_unten_freigestellt.png'), x: 0, speed: 1},
+            {src: loadImage('./assets/background/Hintergrund_unten_freigestellt.png'), x: 0, speed: 1.5},
+            {src: loadImage('./assets/background/Hintergrund_unten_freigestellt.png'), x: 0, speed: 2.5},
+            {src: loadImage('./assets/background/Hintergrund_Untergrund_freigestellt.png'), x: 0, speed: 2.5}
         ]
 
-        this.diverImage = loadImage('/assets/player/Taucher_freigestellt.png');
+        this.diverImage = loadImage('./assets/player/Taucher_freigestellt.png');
 
-        this.rubbishImage = loadImage('/assets/rubbish/plastic-bottles.png');
+        this.rubbishImage = loadImage('./assets/rubbish/plastic-bottles.png');
 
-        this.oceanDwellerImage = loadImage('/assets/oceanDwellers/fish-1331813_960_720.webp');
+        this.oceanDwellerImage = loadImage('./assets/oceanDwellers/fish-1331813_960_720.webp');
 
-        this.arrowImage = loadImage('/assets/player/arrow.png');
+        this.arrowImage = loadImage('./assets/player/arrow.png');
 
     }
 
@@ -127,7 +127,7 @@ class Game {
             localStorage.setItem('deadDwellers', this.diver.deadDwellers);
             localStorage.setItem('proportion', proportion);
             localStorage.setItem('rubbishPieces', rubbishScore);
-            window.location.href = "/result.html"
+            window.location.href = "./result.html"
         } else {
             console.log('function connected');
         }

@@ -3,15 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/stylesheetResults.css" />
+    <link rel="stylesheet" href="./styles/stylesheetResults.css" />
     <title>TOC - The Ocean Cleaner</title>
 </head>
 <body>
     <section class="square">
         <div class="box">
         <h1>Awsome Job!</h1>
-        <h2>Next time you'll even collect more <br> to save our oceans, <br> get some rest and start again :-)</h2>
-        <a class="clickStartAgain" href="/index.html">Click to restart the game</a>
+        
+        <div class="scoreSection">
+            <div class="scoreRectangle leftRec">
+                <img class="icon trashIcon" src="./assets/icons/trashbin.png" alt="trash" />
+                <div class="rubbishScore">0</div>  
+            </div>
+            <div class="scoreRectangle midRec">
+                <img class="icon deadDwellerIcon" src="./assets/icons/fish-skeleton.png" alt="fish skeleton" />
+                <div  class="deadDwellers">0</div>   
+            </div>
+            <div class="scoreRectangle rightRec">
+                
+                <div class="icons">
+                    <img class="icon trashIcon rightScoreLeft" src="./assets/icons/trashbin.png" alt="trash" />
+                    <p>/</p>
+                    <img class="icon deadDwellerIcon rightScoreRight" src="./assets/icons/fish-skeleton.png" alt="fish skeleton" />
+                </div>
+                <div  class="percentage">0.00</div>
+            </div>
+        </div>
+        <h2>Next time you'll collect even more <br> to save our oceans, <br> Don't give up!! <br> Get some rest and start again :-)</h2>
+        <a class="clickStartAgain" href="./index.html">Click to restart the game</a>
         </div>
     </section>
     <script src="./js/result.js"></script>
