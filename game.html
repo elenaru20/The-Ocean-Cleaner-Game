@@ -40,12 +40,12 @@
                 <div class="rubbishScore">0</div>  
             </div>
     
-            <div class="scoreRectangle midRec">
+            <div class="scoreRectangle midRec" id="deadDwellers">
                 <img class="icon deadDwellerIcon" src="./assets/icons/fish-skeleton.png" alt="fish skeleton" />
                 <div  class="deadDwellers">0</div>   
             </div>
 
-            <div class="scoreRectangle rightRec">
+            <div class="scoreRectangle rightRec" id="percentage">
                 
                 <div class="icons">
                     <img class="icon trashIcon rightScoreLeft" src="./assets/icons/trashbin.png" alt="trash" />
@@ -55,10 +55,20 @@
                 <div  class="percentage">1.00</div>
             </div>
         </div>
-            <div class="scoreRectangle midRec secondLine">
+            <div class="scoreRectangle secondLine" id = "ox">
                 <img class="oxygenBottle" src="./assets/icons/oxygen.png" alt="oxygen"/>
                 <div class="timer">100</div>  
                 <p>%</p>
+            </div>
+
+            <div class="scoreRectangle secondLine" id = "munition">
+                <img class="icon munitionIcon" src="./assets/icons/harpoon.png" alt="munition"/>
+                <div class="munitionPieces">10</div>
+            </div>
+
+            <div class="scoreRectangle secondLine" id = "reload">
+                <div class="reloadButton">CLICK <br> Reload Munition</div>
+                <p class ="numReload">3</p> <p>/</p> <p>3</p>
             </div>
 
         

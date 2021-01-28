@@ -80,6 +80,7 @@ h1 {
     background-color: #c2b4b4;
     border-radius: 30px 30px 30px 30px;
     width: 600px;
+    height: 140px;
     font-size: 5rem;
     color: black;
     font-weight: bolder;
@@ -109,7 +110,7 @@ h1 {
 }
 
 .midRec {
-    background-color: #c8a8a8;
+    background-color: #c2b4b4;
 }
 
 .deadDwellerIcon {
@@ -147,6 +148,40 @@ h1 {
     align-items: center;
 }
 
+#ox {
+    margin-left: 2rem;
+}
+
 .secondLine {
     margin-top: 2rem;
+}
+
+.redWarning {
+    /*background-color: red; */
+    animation: blinkingBackground 2s infinite;
+}
+
+@keyframes blinkingBackground{
+    0%		{ background-color: #ef0a1a;}
+    25%		{ background-color: #c2b4b4;}
+    50%		{ background-color: #ef0a1a;}
+    75%		{ background-color: #c2b4b4;}
+    100%	{ background-color: #ef0a1a;}
+}
+
+.orangeWarning {
+    background-color: orange;
+}
+
+.munitionIcon{
+    width: 6rem;
+    height: 6rem;  
+}
+
+.rechargeButton{
+    font-size: 2rem;
+}
+
+#reload {
+    font-size: 3rem;
 }

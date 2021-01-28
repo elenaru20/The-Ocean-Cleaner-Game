@@ -4,8 +4,6 @@ class Diver {
         this.rubbishScore = 0;
         //number of dead dwellers
         this.deadDwellers = 0;
-        //munition used
-        this.munition = 0;
         //gravity of the diver
         this.gravity = 0.0035;
         //velocity of the diver up/down

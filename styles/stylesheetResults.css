@@ -67,9 +67,15 @@ h2 {
     background-color: #c2b4b4;
     border-radius: 30px 30px 30px 30px;
     width: 600px;
+    height: 140px;
     font-size: 5rem;
     color: black;
     font-weight: bolder;
+}
+
+.oxygenBottle {
+    width: 10rem;
+    height: 10rem;
 }
 
 .leftRec{
@@ -133,3 +139,6 @@ h2 {
     margin-top: 2rem;
 }
 
+.oxRec {
+    margin-left: 2rem;
+}

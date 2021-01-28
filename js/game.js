@@ -28,6 +28,11 @@ class Game {
         this.arrowImage;
         this.diverImage;
         this.timer = 100;
+
+        //munition used
+        this.munition = 15;
+        //num recharges
+        this.numRecharges = 3;
     }
 
     setup() {
@@ -66,11 +71,12 @@ class Game {
     }
 
     calcProportion(rubbishScore, dwellerScore) {
-        console.log('trash', rubbishScore)
-        console.log('dweller', dwellerScore)
+        //console.log('trash', rubbishScore)
+        //console.log('dweller', dwellerScore)
         
         let num = parseFloat(rubbishScore/Math.abs(dwellerScore)).toFixed(2);
         this.gameLogic();
+        this.warningButtonsColor();
         if (!isFinite(num)) {
             return parseFloat(rubbishScore).toFixed(2);
         }
@@ -85,9 +91,33 @@ class Game {
 
     shoot() { 
         game.harpoonSound.play();
-        this.arrows.push(new Arrow(this.arrowImage, this.diver)); 
-        this.diver.munition++;
-        console.log('shot', this.diver.munition); 
+        this.arrows.push(new Arrow(this.arrowImage, this.diver));
+        
+        if (this.munition !== 0) {
+        this.munition--;
+        document.querySelector('.munitionPieces').innerText = this.munition;
+        }  
+
+        if (this.munition === 0) {
+            this.reloadMunition();
+        }
+
+        
+    }
+
+    reloadMunition() {
+
+       let numReloads = document.querySelector('.numReload').innerText
+       console.log('numReloads', numReloads)
+       if (numReloads > 0) {
+        document.querySelector('#reload').addEventListener("click", function(){
+            this.munition = 15;
+            document.querySelector('.munitionPieces').innerText = 15;
+            numReloads --;
+            document.querySelector('.numReload').innerText = numReloads;
+
+        })
+       }
     }
 
     filterShots() {
@@ -102,8 +132,9 @@ class Game {
                         this.catchDwellerSound.play();
                         this.diver.deadDwellers -= 1;
                         this.gameLogic();
+                        this.warningButtonsColor();
                         document.querySelector('.deadDwellers').innerText = this.diver.deadDwellers;
-                        console.log(document.querySelector('.deadDwellers').innerText);           
+                        //console.log(document.querySelector('.deadDwellers').innerText);           
                         document.querySelector('.percentage').innerText = this.calcProportion(this.diver.rubbishScore, this.diver.deadDwellers)
                     }
             }
@@ -118,8 +149,9 @@ class Game {
                         
                         this.catchRubbishSound.play();
                         this.diver.rubbishScore += 1;
+                        this.warningButtonsColor();
                         document.querySelector('.rubbishScore').innerText = this.diver.rubbishScore;
-                        console.log(document.querySelector('.rubbishScore').innerText);
+                        //console.log(document.querySelector('.rubbishScore').innerText);
                         document.querySelector('.percentage').innerText = this.calcProportion(this.diver.rubbishScore, this.diver.deadDwellers)
                     }
             }
@@ -129,7 +161,63 @@ class Game {
     countdown() {
         this.timer -= 0.83;
         this.gameLogic();
+        this.warningButtonsColor()
         document.querySelector('.timer').innerText = parseFloat(this.timer).toFixed(0);
+    }
+
+    warningButtonsColor() {
+        let proportion = document.querySelector('.percentage').innerText;
+        //console.log('prop', proportion)
+        let deadDwellers = document.querySelector('.deadDwellers').innerText;
+        //console.log('deaddw', deadDwellers)
+        let oxygen = document.querySelector('.timer').innerText;
+        //console.log('ox',oxygen)
+        if (oxygen <= 20) {
+            //console.log('test color')
+            document.querySelector('#ox').classList.add('redWarning');
+        } else {
+            document.querySelector('#ox').classList.remove('redWarning');
+        }
+        if (oxygen <= 50) {
+            //console.log('test color')
+            document.querySelector('#ox').classList.add('orangeWarning');
+        } else {
+            document.querySelector('#ox').classList.remove('orangeWarning');
+        }
+
+        if (deadDwellers <= -8) {
+            //console.log('test color2')
+            document.querySelector('#deadDwellers').classList.add('redWarning');
+        } else {
+            document.querySelector('#deadDwellers').classList.remove('redWarning');
+        }
+
+        if (deadDwellers <= -6) {
+            //console.log('test color2')
+            document.querySelector('#deadDwellers').classList.add('orangeWarning');
+        } else {
+            document.querySelector('#deadDwellers').classList.remove('orangeWarning');
+        }
+
+        if (proportion <= 1.0) {
+            //console.log('test color3')
+            document.querySelector('#percentage').classList.add('redWarning');
+        } else {
+            document.querySelector('#percentage').classList.remove('redWarning');
+        }
+
+        if (proportion <= 1.3) {
+            //console.log('test color3')
+            document.querySelector('#percentage').classList.add('orangeWarning');
+        } else {
+            document.querySelector('#percentage').classList.remove('orangeWarning');
+        }
+
+        if (this.diver.munition <= 3) {
+            document.querySelector('#munition').classList.add('redWarning');
+        } else {
+            document.querySelector('#munition').classList.remove('redWarning');
+        }    
     }
 
     gameLogic() {
@@ -143,7 +231,7 @@ class Game {
             window.location.href = "./result.html"
         }
         if (this.diver.deadDwellers <= -10 || proportion < 1) {
-            console.log('deadfish works');
+            //console.log('deadfish works');
             localStorage.setItem('deadDwellers', this.diver.deadDwellers);
             localStorage.setItem('proportion', proportion);
             localStorage.setItem('rubbishPieces', rubbishScore);
@@ -200,7 +288,7 @@ class Game {
         this.filterShots();
 
         if (this.timer >= -1 && frameCount % 60 === 0) {
-            console.log('counting time', this.timer)
+            //console.log('counting time', this.timer)
             this.countdown();
         }
     }
