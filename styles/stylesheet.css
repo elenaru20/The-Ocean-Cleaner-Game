@@ -99,6 +99,11 @@ h1 {
     height: 5rem;
 }
 
+.oxygenBottle {
+    width: 10rem;
+    height: 10rem;
+}
+
 .rubbishScore {
     font-weight: bold;
 }
@@ -140,4 +145,8 @@ h1 {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.secondLine {
+    margin-top: 2rem;
 }

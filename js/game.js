@@ -27,6 +27,7 @@ class Game {
         this.oceanDwellerImage;
         this.arrowImage;
         this.diverImage;
+        this.timer = 100;
     }
 
     setup() {
@@ -34,7 +35,7 @@ class Game {
         this.background = new Background();  
         this.rubbishPieces = [];
         this.oceanDwellers = [];  
-        this.arrows = []; 
+        this.arrows = [];
     }
 
     preload() {
@@ -59,9 +60,9 @@ class Game {
         this.arrowImage = loadImage('./assets/player/arrow.png');
 
         this.harpoonSound = createAudio('./assets/sounds/shot.mp3');
-        this.oceanSounds = createAudio('/assets/sounds/bbc_underwater_nhu0501803.mp3');
-        this.catchRubbishSound = createAudio('/assets/sounds/trash.mp3');
-        this.catchDwellerSound = createAudio('/assets/sounds/Dweller.mp3')
+        this.oceanSounds = createAudio('./assets/sounds/bbc_underwater_nhu0501803.mp3');
+        this.catchRubbishSound = createAudio('./assets/sounds/trash.mp3');
+        this.catchDwellerSound = createAudio('./assets/sounds/Dweller.mp3')
     }
 
     calcProportion(rubbishScore, dwellerScore) {
@@ -69,8 +70,7 @@ class Game {
         console.log('dweller', dwellerScore)
         
         let num = parseFloat(rubbishScore/Math.abs(dwellerScore)).toFixed(2);
-        //this.gameLogic();
-
+        this.gameLogic();
         if (!isFinite(num)) {
             return parseFloat(rubbishScore).toFixed(2);
         }
@@ -99,6 +99,7 @@ class Game {
                         this.oceanDwellers.splice(this.oceanDwellers.indexOf(dweller),1);
                         this.arrows.splice(this.arrows.indexOf(arrow),1);
                         
+                        this.catchDwellerSound.play();
                         this.diver.deadDwellers -= 1;
                         this.gameLogic();
                         document.querySelector('.deadDwellers').innerText = this.diver.deadDwellers;
@@ -114,7 +115,8 @@ class Game {
                     arrow.x + arrow.width/2, arrow.y + arrow.width/2) <= 60) {
                         this.rubbishPieces.splice(this.rubbishPieces.indexOf(rubbish),1);
                         this.arrows.splice(this.arrows.indexOf(arrow),1);
-
+                        
+                        this.catchRubbishSound.play();
                         this.diver.rubbishScore += 1;
                         document.querySelector('.rubbishScore').innerText = this.diver.rubbishScore;
                         console.log(document.querySelector('.rubbishScore').innerText);
@@ -124,17 +126,29 @@ class Game {
         }
     }
 
+    countdown() {
+        this.timer -= 0.83;
+        this.gameLogic();
+        document.querySelector('.timer').innerText = parseFloat(this.timer).toFixed(0);
+    }
+
     gameLogic() {
         let proportion = document.querySelector('.percentage').innerText;
         let rubbishScore = document.querySelector('.rubbishScore').innerText;
-        if (this.diver.deadDwellers <= 5 && proportion < 1) {
+        if (this.timer === 0) {
+            localStorage.setItem('deadDwellers', this.diver.deadDwellers);
+            localStorage.setItem('proportion', proportion);
+            localStorage.setItem('rubbishPieces', rubbishScore);
+            localStorage.setItem('oxygenLevel', this.timer);
+            window.location.href = "./result.html"
+        }
+        if (this.diver.deadDwellers <= -10 || proportion < 1) {
             console.log('deadfish works');
             localStorage.setItem('deadDwellers', this.diver.deadDwellers);
             localStorage.setItem('proportion', proportion);
             localStorage.setItem('rubbishPieces', rubbishScore);
+            localStorage.setItem('oxygenLevel', parseFloat(this.timer).toFixed(0));
             window.location.href = "./result.html"
-        } else {
-            console.log('function connected');
         }
     }
 
@@ -144,7 +158,7 @@ class Game {
         this.background.draw();
         this.diver.draw(); 
         
-        if (frameCount % 300 === 0) {
+        if (frameCount % 100 === 0) {
             this.rubbishPieces.push(new Rubbish(this.rubbishImage));
         }
 
@@ -152,7 +166,7 @@ class Game {
             piece.draw();
         })
 
-        if (frameCount % 300 === 0) {
+        if (frameCount % 150 === 0) {
             this.oceanDwellers.push(new OceanDweller(this.oceanDwellerImage));
         }
 
@@ -185,8 +199,9 @@ class Game {
 
         this.filterShots();
 
-        
-
-
+        if (this.timer >= -1 && frameCount % 60 === 0) {
+            console.log('counting time', this.timer)
+            this.countdown();
+        }
     }
 }

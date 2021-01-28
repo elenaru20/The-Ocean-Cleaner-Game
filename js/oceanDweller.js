@@ -6,9 +6,9 @@ class OceanDweller {
         
         this.x = width;
 
-        this.y = 0.3* height + (Math.random() * height);
-        if (this.y >= height - this.height -50) {
-            this.y = height - this.height - 50;
+        this.y = 0.33* height + (Math.random() * height);
+        if (this.y >= height - this.height -30) {
+            this.y = height - this.height - 30;
         }
     }
 

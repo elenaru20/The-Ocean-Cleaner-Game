@@ -6,7 +6,7 @@ class Rubbish {
         
         this.x = width;
 
-        this.y = 0.3* height + (Math.random() * height);
+        this.y = 0.33* height + (Math.random() * height);
         if (this.y >= height - this.height -30) {
             this.y = height - this.height - 30;
         }
