@@ -1,28 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins';
+    font-family: 'Indie Flower', cursive;
     font-size: 16px;
     width: 100vw;
     height: 100vh;
-    background-color:#d1c5c5;
     color: #3e4047;
     margin-top: 10rem;
-    background-color:#2860a9;
+    background-color:#3e4047;
     display: flex;
 	justify-content: center;
-    align-items: flex-start;
 }
 
+.square {
+    background-image: url('../assets/background/Hintergrund.png');
+    background-size: 100% 100%;
+    width: 150rem;
+    height: 180rem;
+    font-size: 4rem;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    text-align: center;
+}
+
+.square h1 {
+    font-size: 11rem;
+    margin-top: 10rem;
+}
+
+.square h2 {
+    font-size: 7rem;
+    margin-top: 40rem;
+}
+
+.square h3 {
+    font-size: 5rem;
+    margin-top: 5rem;
+}
+
+.text1 {
+    
+    font-weight: bold;
+    font-size: 4rem;
+}
 .clickStart {
-    font-size: 10rem;
+    font-size: 8rem;
     text-decoration: none;
-    color: #30a0a5;
-    background-color: #1a596d;
-    padding: 5rem 5rem;
+    color:#2f9aa5;
+    background-color: #2864a8;
+    border-radius: 70% 70% 0% 0%;
+    padding-top: 2rem;
     display: flex;
 	justify-content: center;
     align-items: center;
+    width: 150rem;
 }

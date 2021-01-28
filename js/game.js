@@ -2,20 +2,13 @@ class Game {
 
     //Logik noch implementieren:
     /*
-    wenn fische >5 UND verhältnis von trash/dweller <= 0.5 ==> LOST
-
-    nach 2 minuten ende und anzeige von score ==>timer & anzeige timer
-
-    iteration: next level
+    nachladen Harpune max 3---> FEHLERHAFT! auskommentiert!
     */
-    //shoot harpoone, button to count down munition and recharge munition when empty.
-    // sound(s) & button an/aus
-    //end-screen-HTML
-    //start-screen html
-    //scorebuttons farbe wenn alles im grünen breich, wenn knapp vor loose rot
+   //weitere Ideen:
+    // sound(s) & button an/aus lauter/leiser
     //rocks/elemente die taucher umschiffen muss
     //anderer müll & fische
-    //tauchtiefe anzeige
+    //tauchtiefe anzeigen
 
     constructor() {
         this.backgroundImageFixed1;
@@ -28,11 +21,6 @@ class Game {
         this.arrowImage;
         this.diverImage;
         this.timer = 100;
-
-        //munition used
-        this.munition = 15;
-        //num recharges
-        this.numRecharges = 3;
     }
 
     setup() {
@@ -67,7 +55,7 @@ class Game {
         this.harpoonSound = createAudio('./assets/sounds/shot.mp3');
         this.oceanSounds = createAudio('./assets/sounds/bbc_underwater_nhu0501803.mp3');
         this.catchRubbishSound = createAudio('./assets/sounds/trash.mp3');
-        this.catchDwellerSound = createAudio('./assets/sounds/Dweller.mp3')
+        this.catchDwellerSound = createAudio('./assets/sounds/Dweller.mp3');
     }
 
     calcProportion(rubbishScore, dwellerScore) {
@@ -90,34 +78,30 @@ class Game {
     }
 
     shoot() { 
-        game.harpoonSound.play();
-        this.arrows.push(new Arrow(this.arrowImage, this.diver));
+        this.harpoonSound.play();
+        this.arrows.push(new Arrow(this.arrowImage, this.diver));    
         
-        if (this.munition !== 0) {
-        this.munition--;
-        document.querySelector('.munitionPieces').innerText = this.munition;
-        }  
-
-        if (this.munition === 0) {
-            this.reloadMunition();
-        }
-
-        
+        if (this.diver.munition > 0) {
+            this.diver.munition--;
+            document.querySelector('.munitionPieces').innerText = this.diver.munition;
+            }  
     }
 
+
+ 
     reloadMunition() {
 
-       let numReloads = document.querySelector('.numReload').innerText
-       console.log('numReloads', numReloads)
-       if (numReloads > 0) {
+    //   let num= document.querySelector('.numReload').innerText; 
+    //   let numReloadsS= parseInt(num);
+       
         document.querySelector('#reload').addEventListener("click", function(){
-            this.munition = 15;
-            document.querySelector('.munitionPieces').innerText = 15;
-            numReloads --;
-            document.querySelector('.numReload').innerText = numReloads;
+            game.diver.munition = 8;
+            document.querySelector('.munitionPieces').innerText = game.diver.munition;
 
-        })
-       }
+            // numReloadsS += 1;
+            // document.querySelector('.numReload').innerText = numReloadsS;
+        })  
+       
     }
 
     filterShots() {
@@ -223,11 +207,16 @@ class Game {
     gameLogic() {
         let proportion = document.querySelector('.percentage').innerText;
         let rubbishScore = document.querySelector('.rubbishScore').innerText;
-        if (this.timer === 0) {
+
+        let winText = "WELL DONE.\nThe Ocean belongs to the Ocean Dwellers again!\nNever stop - get some rest and excel on your next hunt.\nGood luck!";
+        let loseText = "PLASTIC WON.\nPlastic rules the oceans - never give up!\nTake some rest and try again.\nGood luck!"
+        
+        if (this.timer <= 0) {
             localStorage.setItem('deadDwellers', this.diver.deadDwellers);
             localStorage.setItem('proportion', proportion);
             localStorage.setItem('rubbishPieces', rubbishScore);
-            localStorage.setItem('oxygenLevel', this.timer);
+            localStorage.setItem('oxygenLevel', 0);
+            localStorage.setItem('message', winText);
             window.location.href = "./result.html"
         }
         if (this.diver.deadDwellers <= -10 || proportion < 1) {
@@ -235,7 +224,8 @@ class Game {
             localStorage.setItem('deadDwellers', this.diver.deadDwellers);
             localStorage.setItem('proportion', proportion);
             localStorage.setItem('rubbishPieces', rubbishScore);
-            localStorage.setItem('oxygenLevel', parseFloat(this.timer).toFixed(0));
+            localStorage.setItem('oxygenLevel', this.timer);
+            localStorage.setItem('message', loseText);
             window.location.href = "./result.html"
         }
     }
@@ -287,9 +277,10 @@ class Game {
 
         this.filterShots();
 
-        if (this.timer >= -1 && frameCount % 60 === 0) {
+        if (this.timer > 0 && frameCount % 60 === 0) {
             //console.log('counting time', this.timer)
             this.countdown();
         }
+
     }
 }

@@ -1,18 +1,21 @@
 
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins';
+    font-family: 'Indie Flower', cursive;
     font-size: 16px;
     width: 100vw;
     height: 100vh;
-    background-color:#2860a9;
-    color: #3e4047;
+    background-color:#3e4047;
+    color: #32b0a3;
     margin-top: 5rem;
     margin-left: 5rem;
+    display: flex;
+	justify-content: center;
+    align-items: flex-start;
 }
 
 .flexbox {
@@ -77,10 +80,10 @@ h1 {
     flex-direction: row;
     justify-content: space-around;
     align-items:center;
-    background-color: #c2b4b4;
+    background-color: #fbf593;
     border-radius: 30px 30px 30px 30px;
     width: 600px;
-    height: 140px;
+    height: 150px;
     font-size: 5rem;
     color: black;
     font-weight: bolder;
@@ -88,8 +91,8 @@ h1 {
 
 .leftRec{
     margin-right: 4rem;
-    margin-left: 2rem;
-    /*background-color: #2e98a4;*/
+    margin-left: 13rem;
+    margin-bottom: 2rem;
 }
 
 .icon {
@@ -107,10 +110,6 @@ h1 {
 
 .rubbishScore {
     font-weight: bold;
-}
-
-.midRec {
-    background-color: #c2b4b4;
 }
 
 .deadDwellerIcon {
@@ -148,10 +147,6 @@ h1 {
     align-items: center;
 }
 
-#ox {
-    margin-left: 2rem;
-}
-
 .secondLine {
     margin-top: 2rem;
 }
@@ -162,15 +157,15 @@ h1 {
 }
 
 @keyframes blinkingBackground{
-    0%		{ background-color: #ef0a1a;}
-    25%		{ background-color: #c2b4b4;}
-    50%		{ background-color: #ef0a1a;}
-    75%		{ background-color: #c2b4b4;}
-    100%	{ background-color: #ef0a1a;}
+    0%		{ background-color: #891810;}
+    25%		{ background-color: #fbf593;}
+    50%		{ background-color: #891810;}
+    75%		{ background-color: #fbf593;}
+    100%	{ background-color: #891810;}
 }
 
 .orangeWarning {
-    background-color: orange;
+    background-color: #f7853c;
 }
 
 .munitionIcon{
@@ -178,10 +173,35 @@ h1 {
     height: 6rem;  
 }
 
-.rechargeButton{
-    font-size: 2rem;
+#reload {
+    font-size: 4rem;
+    background-color: #891810;
+    color: #fbf593;
+    text-align: center;
+    height: 15rem;
 }
 
-#reload {
-    font-size: 3rem;
+.setBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.description h1 {
+    font-size: 10rem;
+
+}
+
+.description h2 {
+    font-size: 6rem;
+}
+
+.text1 {
+    font-size: 4rem;
+}
+
+.instructions {
+    font-size: 5rem;
 }

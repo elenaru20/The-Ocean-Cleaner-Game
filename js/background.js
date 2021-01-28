@@ -5,7 +5,7 @@ class Background {
         //fixed background sun and horizon
         image(game.backgroundImageFixed1, 0, 0, width, height);
         //fixed ship as a background
-        image(game.backgroundImageFixed2, 120, 55, 400, 350);
+        image(game.backgroundImageFixed2, 120, 140, 550, 500);
         //fixed waves
         image(game.backgroundImageFixed3, 0, 0, width, height);
 

@@ -1,10 +1,12 @@
 const game = new Game();
-const canvasX = 2000;
-const canvasY = 1450;
+const canvasX = 2300;
+const canvasY = 2200;
+// width: 150rem;
+// height: 180rem;
 
 function preload() {   
     game.preload();
-   // game.oceanSounds.play();
+    game.oceanSounds.play();
 }
 
 function setup() {
@@ -42,7 +44,15 @@ function keyPressed() {
 
     //space to shoot
     if (keyCode === 32) {
+        if (game.diver.munition > 0) {
         game.shoot();
+        }
+        // let num= document.querySelector('.numReload').innerText; 
+        // let numReloadsS= parseInt(num);
+
+        if (game.diver.munition === 0 /*&& numReloadsS < 3 */) {
+            game.reloadMunition();
+        }
     }
 
 }
