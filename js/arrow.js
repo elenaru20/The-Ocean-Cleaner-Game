@@ -8,7 +8,7 @@ class Arrow {
     }
 
     draw() {
-        this.x += 2;
+        this.x += 4;
         image(this.image, this.x, this.y, this.width, this.height)
     }
 

@@ -4,6 +4,7 @@ const canvasY = 1450;
 
 function preload() {   
     game.preload();
+    game.oceanSounds.play();
 }
 
 function setup() {

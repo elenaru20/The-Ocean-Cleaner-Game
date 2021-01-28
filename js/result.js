@@ -8,3 +8,4 @@ console.log('dwellers', deadDwellers, 'proportion', proportion, 'collectedRubbis
 document.querySelector('.percentage').innerText = proportion;
 document.querySelector('.rubbishScore').innerText = collectedRubbishPieces;
 document.querySelector('.deadDwellers').innerText = deadDwellers;
+
