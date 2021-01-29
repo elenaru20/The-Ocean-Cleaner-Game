@@ -208,7 +208,7 @@ class Game {
         let proportion = document.querySelector('.percentage').innerText;
         let rubbishScore = document.querySelector('.rubbishScore').innerText;
 
-        let winText = "WELL DONE.\nThe Ocean belongs to the Ocean Dwellers again!\nNever stop - get some rest and excel on your next hunt.\nGood luck!";
+        let winText = "WELL DONE.\nThe Oceans belongs to the Ocean Dwellers again!\nNever stop - get some rest and excel on your next hunt.\nGood luck!";
         let loseText = "PLASTIC WON.\nPlastic rules the oceans - never give up!\nTake some rest and try again.\nGood luck!"
         
         if (this.timer <= 0) {
